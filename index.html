@@ -15,12 +15,28 @@
 		Средний пульс:
 		<input type="text" name="averagePulse">
 		<br>
-		<input type="button" value="Готово" onClick="Complete();">
+		<input type="button" value="Добавить" onClick="addInTable();">
 	</form>
 	<table id="inputTable" border="1px">
 		<tr>
 			<th>Км/ч</th>
 			<th>Пульс</th>
+		</tr>
+	</table>
+	<br>
+	<input type="button" value="Добавить" onClick="addInMainTable('inputTable');">
+	<br>
+	<table id="inputTable2" border="1px">
+		<tr>
+			<th>Дата</th>
+			<th>5 км/ч</th>
+			<th>6 км/ч</th>
+			<th>7 км/ч</th>
+			<th>8 км/ч</th>
+			<th>9 км/ч</th>
+			<th>10 км/ч</th>
+			<th>11 км/ч</th>
+			<th>12 км/ч</th>
 		</tr>
 	</table>
 </body>
