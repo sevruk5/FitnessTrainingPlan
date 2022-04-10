@@ -8,32 +8,20 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div>
-  <form name="main">
-	Длительность (мин.):
-	<input type="text" name="inputDuration" value="" id="inputDuration-id">
-	<br>
-	Км/ч:
-	<select multiple name="inputKmPerHour">
-		<option value="5">5 км</option>
-		<option value="6" selected>6 км</option>
-		<option value="7">7 км</option>
-		<option value="8">8 км</option>
-		<option value="9">9 км</option>
-		<option value="10">10 км</option>
-		<option value="11">11 км</option>
-		<option value="12">12 км</option>
-		<option value="13">13 км</option>
-		<option value="14">14 км</option>
-		<option value="15">15 км</option>
-	</select>
-	<br>
-	Пульс:
-	<input type="text" name="inputPulse" value="">
-	<br>
-	<button type="sumbit">Ввести</button>
-  </form>
-</div>
-
+	<form name="main">
+		Км/ч:
+		<input type="text" name="km">
+		<br>
+		Средний пульс:
+		<input type="text" name="averagePulse">
+		<br>
+		<input type="button" value="Готово" onClick="Complete();">
+	</form>
+	<table id="inputTable" border="1px">
+		<tr>
+			<th>Км/ч</th>
+			<th>Пульс</th>
+		</tr>
+	</table>
 </body>
 </html>
