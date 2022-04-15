@@ -8,25 +8,24 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<form name="main">
+	<form name="formAddNewTraining">
 		Км/ч:
-		<input type="text" name="km">
+		<input type="text" name="enteredKm">
+		<br> Средний пульс:
+		<input type="text" name="enteredAveragePulse">
 		<br>
-		Средний пульс:
-		<input type="text" name="averagePulse">
-		<br>
-		<input type="button" value="Добавить" onClick="addInTable();">
+		<input type="button" value="Добавить" onClick="addRecordInTableNewTraining();">
 	</form>
-	<table id="inputTable" border="1px">
+	<table id="tableNewTraining" border="1px">
 		<tr>
 			<th>Км/ч</th>
 			<th>Пульс</th>
 		</tr>
 	</table>
 	<br>
-	<input type="button" value="Добавить" onClick="addInMainTable('inputTable');">
+	<input type="button" value="Добавить" onClick="addRecordInTableAllTraining(tableNewTraining);">
 	<br>
-	<table id="inputTable2" border="1px">
+	<table id="tableAllTraining" border="1px">
 		<tr>
 			<th>Дата</th>
 			<th>5 км/ч</th>
