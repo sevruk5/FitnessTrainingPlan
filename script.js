@@ -1,85 +1,86 @@
-function addRecordInTableNewTraining() {
-	let tableNewTraining = document.getElementById('tableNewTraining');
+class AllTraining {
+	tableAllTraining = document.getElementById('tableAllTraining');
+	tableNewTraining = document.getElementById('tableNewTraining');
+	countCellsTableAllTraining = tableAllTraining.rows[0].cells.length;
+	newRow;
+	countCellsTableAllTraining = this.tableAllTraining.rows[0].cells.length;
+	countRowsTableNewTraining = this.tableNewTraining.rows.length;
+	countRowsTableAllTraining = this.tableAllTraining.rows.length;
+	arrAveragePulse = [];
+	constructor() {}
 
-	let newRow = tableNewTraining.insertRow();
+	addRecordInTableNewTraining() {
+		let newRowNewTraining = this.tableNewTraining.insertRow();
 
-	let newCellKm = newRow.insertCell(0);
-	let enteredKm = document.formAddNewTraining.enteredKm.value;
-	newCellKm.innerHTML = enteredKm;
+		let newCellKm = newRowNewTraining.insertCell(0);
+		let enteredKm = document.formAddNewTraining.enteredKm.value;
+		newCellKm.innerHTML = enteredKm;
 
-	let newCellAveragePulse = newRow.insertCell(1);
-	let enteredAveragePulse = document.formAddNewTraining.enteredAveragePulse.value;
-	newCellAveragePulse.innerHTML = enteredAveragePulse;
-}
-
-function addRecordInTableAllTraining()
-{
-	let tableAllTraining = document.getElementById('tableAllTraining');
-	let tableNewTraining = document.getElementById('tableNewTraining');
-	let countCellsTableAllTraining = tableAllTraining.rows[0].cells.length;
-	let countRowsTableNewTraining = tableNewTraining.rows.length;
-	let countRowsTableAllTraining = tableAllTraining.rows.length;
-	let newRow = addNewRow(tableAllTraining);
-	insertCellsInRow(newRow, countCellsTableAllTraining);
-	fillingCellsInRow(newRow, countCellsTableAllTraining, tableAllTraining, countRowsTableAllTraining);
-	deleteAllRecordInTableNewTraining(tableNewTraining, countRowsTableNewTraining)
-}
-
-function fillingCellsInRow(newRow, countCellsTableAllTraining, tableAllTraining, countRowsTableAllTraining){
-	let arrAveragePulse = [];
-	fillArrayValuesFromTableNewTraining(arrAveragePulse, countCellsTableAllTraining);
-	// for(let i=0;i<arrAveragePulse.length;i++){
-	// 	alert(arrAveragePulse[i]);
-	// }
-	for(let i = 1; i < countCellsTableAllTraining;i++){
-		tableAllTraining.rows[countRowsTableAllTraining].cells[i].innerHTML = arrAveragePulse[i];
+		let newCellAveragePulse = newRowNewTraining.insertCell(1);
+		let enteredAveragePulse = document.formAddNewTraining.enteredAveragePulse.value;
+		newCellAveragePulse.innerHTML = enteredAveragePulse;
 	}
-	let today = new Date().toISOString().split("T")[0];
-	tableAllTraining.rows[countRowsTableAllTraining].cells[0].innerHTML = today;
-}
 
-function fillArrayValuesFromTableNewTraining(arrAveragePulse, countCellsTableAllTraining){
-	fillArrayWithZero(arrAveragePulse);
-	fillArrayWithAveragePulse(arrAveragePulse, countCellsTableAllTraining);
-}
+	addRecordInTableAllTraining() {
+		this.newRow = this.tableAllTraining.insertRow();
+		this.insertCellsInRow();
+		this.fillingCellsInRow();
 
-function fillArrayWithAveragePulse(arrAveragePulse, countCellsTableAllTraining){
-	let tableNewTraining = document.getElementById('tableNewTraining');
-	let tableAllTraining = document.getElementById('tableAllTraining');
-	let countRowsTableNewTraining = tableNewTraining.rows.length;
-	for(let i=1;i<countCellsTableAllTraining;i++)
-	{
-		for(let j = 1; j < countRowsTableNewTraining; j++){
-			let cellKm = tableNewTraining.rows[j].cells[0].innerHTML;
-			let cellAveragePulse = tableNewTraining.rows[j].cells[1].innerHTML;
-			if(cellKm==(i+4)){
-				arrAveragePulse[i] = cellAveragePulse;
-			}	
+		this.deleteAllRecordInTableNewTraining();
+	}
+
+	insertCellsInRow() {
+		for(let i=0;i<this.countCellsTableAllTraining;i++)
+		{
+			let cell = this.newRow.insertCell(i);
+		}
+	}
+
+	fillingCellsInRow(){
+		this.fillArrayWithZero();
+		this.fillArrayWithAveragePulse();
+
+		for(let i = 1; i < this.countCellsTableAllTraining;i++){
+			this.tableAllTraining.rows[this.countRowsTableAllTraining].cells[i].innerHTML = this.arrAveragePulse[i];
+		}
+		
+		let today = new Date().toISOString().split("T")[0];
+		this.tableAllTraining.rows[this.countRowsTableAllTraining].cells[0].innerHTML = today;
+	}
+
+	fillArrayWithZero(){
+		for(let i=0;i<9;i++)
+		{
+			this.arrAveragePulse[i] = 0;
+		}
+	}
+
+	fillArrayWithAveragePulse(){
+		for(let i=1;i<this.countCellsTableAllTraining;i++)
+		{
+			for(let j = 1; j < this.countRowsTableNewTraining; j++){
+				let cellKm = this.tableNewTraining.rows[j].cells[0].innerHTML;
+				let cellAveragePulse = this.tableNewTraining.rows[j].cells[1].innerHTML;
+				if(cellKm==(i+4)){
+					this.arrAveragePulse[i] = cellAveragePulse;
+				}	
+			}
+		}
+	}
+
+	deleteAllRecordInTableNewTraining(){
+		for(let i = 1; i<this.countRowsTableNewTraining;i++){
+			tableNewTraining.deleteRow(1);
 		}
 	}
 }
 
-function addNewRow(tableAllTraining){
-	let newRow = tableAllTraining.insertRow();
-	return newRow;
+function addNewRunTraining() {
+	let runTraining = new AllTraining();
+	runTraining.addRecordInTableNewTraining();
 }
 
-function insertCellsInRow(newRow, countCellsTableAllTraining){
-	for(let i=0;i<countCellsTableAllTraining;i++)
-	{
-		let cell = newRow.insertCell(i);
-	}
-}
-
-function fillArrayWithZero(arrAveragePulse){
-	for(let i=0;i<9;i++)
-	{
-		arrAveragePulse[i] = 0;
-	}
-}
-
-function deleteAllRecordInTableNewTraining(tableNewTraining, countRowsTableNewTraining){
-	for(let i = 1; i<countRowsTableNewTraining;i++){
-		document.getElementById("tableNewTraining").deleteRow(1);
-	}
+function addAllRunTraining() {
+	let runTraining = new AllTraining();
+	runTraining.addRecordInTableAllTraining();
 }
